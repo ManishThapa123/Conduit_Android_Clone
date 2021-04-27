@@ -7,10 +7,12 @@ For more information on how to this works with other backends, head over to the 
 
 I've gone to great lengths to adhere to the latest community styleguides & best practices but had to adapt between the RealWorld specification and general mobile layout of Medium.com.
 
-Development
+Development:
+
 This project has been developed with Android Studio
 
-Concepts
+#Concepts:
+
 This RealWorld app tries to show the following Android concepts:
 
 100% Kotlin Codebase
