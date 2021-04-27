@@ -11,7 +11,7 @@ Development:
 
 This project has been developed with Android Studio
 
-#Concepts:
+Concepts:
 
 This RealWorld app tries to show the following Android concepts:
 
@@ -30,7 +30,7 @@ api - The REST API consumption library. Pure JVM library not Android-specific
 Other Backends
 Obviously, this RealWorld app is a frontend app. But it can connect to all backends implementing the RealWorld spec and API. To test you own backend implementation just change the URL in the settings dialog.
 
-Testing
+Testing:
 This project has been manually tested against
 
 Emulator
