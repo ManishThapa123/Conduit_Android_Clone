@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import io.realworld.android.data.ArticlesRepo
 import io.realworld.api.models.entities.Article
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class FeedViewModel: ViewModel() {
     private val _feed = MutableLiveData<List<Article>>()
@@ -20,6 +21,13 @@ class FeedViewModel: ViewModel() {
            Log.d("FEED","Feed Fetched ${it.articlesCount}")
        }
     }
+
+//    fun `GET articles`(){
+//        runBlocking {
+//            val articles = conduitClient.publicApi.getArticles()
+//            assertNotNull(articles.body()?.articles)
+//        }
+//    }
 //    fun updateFeed(){
 ////        ArticlesRepo.getGlobalFeed()
 //        //to call suspend function

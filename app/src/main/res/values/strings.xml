@@ -10,4 +10,7 @@
     <string name="feed">Feed</string>
     <string name="fetch_feed">fetch feed</string>
     <string name="menu_auth">Login/Sign Up</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

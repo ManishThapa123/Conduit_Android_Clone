@@ -10,7 +10,7 @@ import io.realworld.api.models.responses.TagResponse
 import io.realworld.api.models.responses.UserResponse
 import retrofit2.Response
 import retrofit2.http.*
-import javax.annotation.Generated
+
 
 interface ConduitAPI {
 
