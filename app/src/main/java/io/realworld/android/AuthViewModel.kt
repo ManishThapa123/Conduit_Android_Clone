@@ -1,4 +1,4 @@
-package io.realworld.android.ui.auth
+package io.realworld.android
 
 import androidx.lifecycle.*
 import io.realworld.android.data.UserRepo
@@ -7,8 +7,8 @@ import kotlinx.coroutines.launch
 
 class AuthViewModel: ViewModel() {
 
-    private val _user = MutableLiveData<User>()
-    val user : LiveData<User> = _user
+    private val _user = MutableLiveData<User?>()
+    val user : LiveData<User?> = _user
 
     fun login(email: String, password: String) = viewModelScope.launch {
         UserRepo.login(email, password)?.let {

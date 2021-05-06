@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import io.realworld.android.AuthViewModel
 import io.realworld.android.R
 
 class LoginFragment: Fragment() {
 
-    lateinit var authViewModel: AuthViewModel
+    val authViewModel: AuthViewModel by activityViewModels()
     private var loginButton : Button? = null
     private var email: EditText? = null
     private var password: EditText? = null
@@ -24,7 +24,6 @@ class LoginFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_login, container, false)
 
         loginButton = root.findViewById(R.id.loginButton)
@@ -40,12 +39,9 @@ class LoginFragment: Fragment() {
             authViewModel.login(
                 email?.text.toString(),
                 password?.text.toString()
-
             )
         }
-        authViewModel.user.observe({lifecycle}){
-            Toast.makeText(requireContext(),"Logged in as ${it.username}",Toast.LENGTH_LONG).show()
-        }
+
     }
 
 }
