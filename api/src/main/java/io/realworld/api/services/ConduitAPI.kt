@@ -11,7 +11,6 @@ import io.realworld.api.models.responses.UserResponse
 import retrofit2.Response
 import retrofit2.http.*
 
-
 interface ConduitAPI {
 
     @POST("users")

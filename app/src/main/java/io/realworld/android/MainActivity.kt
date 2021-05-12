@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import io.realworld.api.models.entities.User
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val authViewModel: AuthViewModel by viewModels()
     private lateinit var appBarConfiguration: AppBarConfiguration
     var navView : NavigationView? = null
+    var navController: NavController? = null
     var drawerLayout: DrawerLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +38,15 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_feed,
+            R.id.nav_feed,
+            R.id.nav_my_feed,
         R.id.nav_auth), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView?.setupWithNavController(navController)
 
         authViewModel.user.observe({lifecycle}){
             updateMenu(it)
+            navController.navigateUp()
             Toast.makeText(this,"Logged in as ${it?.username}", Toast.LENGTH_LONG).show()
         }
     }

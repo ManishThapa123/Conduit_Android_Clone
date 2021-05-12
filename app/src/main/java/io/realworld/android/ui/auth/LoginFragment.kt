@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import io.realworld.android.AuthViewModel
 import io.realworld.android.R
 
@@ -24,11 +24,14 @@ class LoginFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_login, container, false)
+        val root = inflater.inflate(R.layout.fragment_login_signup, container, false)
 
         loginButton = root.findViewById(R.id.loginButton)
         email = root.findViewById(R.id.emailEditText)
         password = root.findViewById(R.id.passwordEditText)
+        var username: EditText? = root.findViewById(R.id.usernameEditText)
+        username?.isVisible = false
+
         return root
     }
 

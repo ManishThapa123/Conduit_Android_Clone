@@ -4,18 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.realworld.android.R
 
-class GlobalFeedFragment : Fragment() {
+class MyFeedFragment: Fragment() {
 
-private lateinit var feedViewModel: FeedViewModel
-private lateinit var feedAdapter: ArticleFeedAdapter
-private var binding: RecyclerView? = null
+    private lateinit var feedViewModel: FeedViewModel
+    private lateinit var feedAdapter: ArticleFeedAdapter
+    private var binding: RecyclerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,19 +29,17 @@ private var binding: RecyclerView? = null
         binding?.layoutManager = LinearLayoutManager(context)
         binding?.adapter = feedAdapter
         return root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        feedViewModel.fetchGlobalFeed()
+
+        feedViewModel.fetchMyFeed()
 
         feedViewModel.feed.observe({lifecycle}){
             feedAdapter.submitList(it)
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-    }
 }

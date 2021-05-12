@@ -12,7 +12,9 @@ import io.realworld.android.R
 
 class AuthFragment : Fragment() {
 
-
+    private var navController: NavController? = null
+    private var root: View? = null
+    private var tabLayout: TabLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,25 +22,28 @@ class AuthFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_auth, container, false)
-        val tabLayout = root.findViewById<TabLayout>(R.id.auth_tabs)
+        root = inflater.inflate(R.layout.fragment_auth, container, false)
+         tabLayout = root?.findViewById(R.id.auth_tabs)
+        return root
+    }
 
 
-//        activity.let {
-//            navController = Navigation.findNavController(requireActivity(), R.id.navigation_auth)}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        navController = root?.let { Navigation.findNavController(it.findViewById(R.id.authFragmentNavHost)) }
+        tabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
-            when(tab?.position){
-                0 -> {
-                    requireView().findNavController().navigate(R.id.gotoLoginFragment)
+                when(tab?.position){
+                    0 -> {
+                        navController?.navigate(R.id.gotoLoginFragment)
+
+                    }
+                    1 -> {
+                        navController?.navigate(R.id.gotoSignUpFragment)
+                    }
 
                 }
-                1 -> {
-                    requireView().findNavController().navigate(R.id.gotoSignUpFragment)
-                }
-
-            }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -50,12 +55,6 @@ class AuthFragment : Fragment() {
             }
 
         })
-        return root
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
     }
 }
