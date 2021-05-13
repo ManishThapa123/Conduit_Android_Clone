@@ -9,22 +9,43 @@
         android:id="@+id/nav_feed"
         android:name="io.realworld.android.ui.feed.GlobalFeedFragment"
         android:label="@string/feed"
-        tools:layout="@layout/fragment_feed" />
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_globalFeed_action_openArticle"
+            app:destination="@id/nav_article"
+            app:popUpTo="@id/nav_feed" >
+            <argument android:name="@string/article_id" app:argType="string"/>
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/nav_my_feed"
         android:name="io.realworld.android.ui.feed.MyFeedFragment"
         android:label="@string/my_feed"
-        tools:layout="@layout/fragment_feed" />
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_myFeed_action_openArticle"
+            app:destination="@id/nav_article"
+            app:popUpTo="@id/nav_my_feed" >
+            <argument android:name="@string/article_id" app:argType="string"/>
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/nav_auth"
         android:name="io.realworld.android.ui.auth.AuthFragment"
         android:label="@string/menu_auth"
         tools:layout="@layout/fragment_auth" />
+
     <fragment
         android:id="@+id/nav_settings"
         android:name="io.realworld.android.ui.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_article"
+        android:name="io.realworld.android.ui.article.ArticleFragment"
+        android:label="@string/article"
+        tools:layout="@layout/fragment_article" />
 </navigation>

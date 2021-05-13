@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import io.realworld.android.R
 import io.realworld.android.databinding.ListItemArticleBinding
+import io.realworld.android.extensions.loadImage
+import io.realworld.android.extensions.showFormattedDate
 import io.realworld.api.models.entities.Article
 
-class ArticleFeedAdapter : ListAdapter<Article, ArticleFeedAdapter.ArticleViewHolder>(
+class ArticleFeedAdapter(val onArticleClicked: (slug: String) -> Unit) : ListAdapter<Article, ArticleFeedAdapter.ArticleViewHolder>(
       object : DiffUtil.ItemCallback<Article>(){
           override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
               return oldItem == newItem
@@ -25,6 +27,9 @@ class ArticleFeedAdapter : ListAdapter<Article, ArticleFeedAdapter.ArticleViewHo
       }
 ) {
 
+    interface OnArticleClickListener{
+        fun onArticleClicked()
+    }
 
     inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -44,10 +49,12 @@ class ArticleFeedAdapter : ListAdapter<Article, ArticleFeedAdapter.ArticleViewHo
             authorTextView.text = article.author.username
             titleTextView.text = article.title
             bodyTextView.text = article.body
-            imageView.setBackgroundColor(Color.GREEN)
-            dateTextView.text = "27-April-2021"
+            imageView.loadImage(article.author.image,true)
+            dateTextView.showFormattedDate(article.createdAt)
 
-
+        root.setOnClickListener {
+            onArticleClicked(article.slug)
+        }
         }
 
     }

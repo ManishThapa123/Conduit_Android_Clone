@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.realworld.android.R
@@ -24,7 +26,7 @@ private var binding: RecyclerView? = null
     ): View? {
 
         feedViewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
-        feedAdapter = ArticleFeedAdapter()
+        feedAdapter = ArticleFeedAdapter{openArticle(it)}
         val root = inflater.inflate(R.layout.fragment_feed,container,false)
         binding = root.findViewById(R.id.feedRecyclerView)
         binding?.layoutManager = LinearLayoutManager(context)
@@ -41,8 +43,10 @@ private var binding: RecyclerView? = null
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
+    fun openArticle(articleId: String){
+    findNavController().navigate(R.id.action_globalFeed_action_openArticle,
+        bundleOf(
+            resources.getString(R.string.article_id) to articleId)
+    )
     }
 }

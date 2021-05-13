@@ -50,6 +50,16 @@ class SettingsFragment: Fragment() {
             }
 
         }
+
+        buttonUpdate?.setOnClickListener {
+            authViewModel.update(
+                username = username?.text.toString().takeIf { it.isNotBlank() },
+                bio = bio?.text.toString(),
+                email= email?.text.toString().takeIf { it.isNotBlank() },
+                password = password?.text.toString().takeIf { it.isNotBlank() },
+                image = image?.text.toString()
+            )
+        }
     }
 
 }

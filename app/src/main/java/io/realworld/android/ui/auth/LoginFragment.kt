@@ -29,7 +29,7 @@ class LoginFragment: Fragment() {
         loginButton = root.findViewById(R.id.loginButton)
         email = root.findViewById(R.id.emailEditText)
         password = root.findViewById(R.id.passwordEditText)
-        var username: EditText? = root.findViewById(R.id.usernameEditText)
+        val username: EditText? = root.findViewById(R.id.usernameEditText)
         username?.isVisible = false
 
         return root

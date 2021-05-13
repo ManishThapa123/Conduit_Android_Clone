@@ -10,7 +10,7 @@ import kotlin.random.Random
 
 class ConduitClientTests {
 
-    private val conduitClient = ConduitClient()
+    private val conduitClient = ConduitClient
 
     /**
      * This function retrieves all the articles
