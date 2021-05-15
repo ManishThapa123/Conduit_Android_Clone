@@ -58,6 +58,8 @@ class ArticleFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         articleViewModel.article.observe({lifecycle}){
+
+//            root?.findViewById<TextView>(R.id.titleTextView)?.text = it.createdAt
             root?.apply {
                 articleTitle?.text = it.title
                 authorName?.text = it.author.username
@@ -67,6 +69,8 @@ class ArticleFragment: Fragment() {
 
 
             }
+
+
 
         }
 
